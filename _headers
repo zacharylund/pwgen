@@ -1,0 +1,7 @@
+/*
+	Feature-Policy: accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'
+	Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+	Referrer-Policy: same-origin
+	X-Content-Type-Options: nosniff
+	X-Frame-Options: DENY
+	X-XSS-Protection: 1; mode=block

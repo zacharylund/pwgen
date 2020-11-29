@@ -1,0 +1,6 @@
+#password-form input {
+	width: 80px !important;
+}
+#password-lists li.list-group-item {
+	font-family: 'Courier New', monospace;
+}

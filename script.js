@@ -33,6 +33,12 @@ function refreshList(list)
 {
 	var length = $('#password-length').val();
 	var count = $('#password-count').val();
+	var numbers = $('#password-numbers').is(':checked');
+	var symbols = [];
+
+	if ($('#password-symbols').is(':checked')) {
+		symbols = ['!', '@', '#', '$', '%', '^', '&', '*'];
+	}
 
 	var words = list.data('words');
 
@@ -43,10 +49,19 @@ function refreshList(list)
 		var password = words[i];
 
 		for (l = 1; l < length; l++) {
-			var v = getRandomInt(1, 9);
-			var i = getRandomInt(0, words.length - 1);
-			var word = words[i];
-			password += v + word.charAt(0).toUpperCase() + word.slice(1);
+			var separator = '';
+
+			if (numbers) {
+				separator += getRandomInt(2, 9);
+			}
+
+			if (symbols.length) {
+				separator += symbols[getRandomInt(0, symbols.length - 1)];
+			}
+
+			var word = words[getRandomInt(0, words.length - 1)];
+
+			password += separator + word.charAt(0).toUpperCase() + word.slice(1);
 		}
 
 		list.append($('<li class="list-group-item">').html(password));

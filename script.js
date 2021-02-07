@@ -6,7 +6,7 @@ function getRandomInt(min, max)
 	var maxRange = 65536;
 	var numbers = new Uint16Array(1);
 
-	window.crypto.getRandomValues(numbers);
+	(window.crypto || window.msCrypto).getRandomValues(numbers);
 
 	if (numbers[0] >= Math.floor(maxRange / range) * range) {
 		return getRandomInt(min, max);

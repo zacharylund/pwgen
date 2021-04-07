@@ -68,28 +68,30 @@ function refreshList(list)
 	}
 }
 
-$('#password-lists .password-list').each(function () {
-	var list = $(this);
-
-	$.get($(this).data('path'), function(data) {
-		var words = [];
-
-		data.trim().split("\n").forEach(function (line)  {
-			var parts = line.split("\t");
-
-			words.push(parts[1]);
-		});
-
-		list.data('words', words);
-
-		refreshList(list);
-	});
-});
-
-$('#password-form').submit(function (e) {
-	e.preventDefault();
-
+$(document).ready(function () {
 	$('#password-lists .password-list').each(function () {
-		refreshList($(this));
+		var list = $(this);
+
+		$.get($(this).data('path'), function(data) {
+			var words = [];
+
+			data.trim().split("\n").forEach(function (line)  {
+				var parts = line.split("\t");
+
+				words.push(parts[1]);
+			});
+
+			list.data('words', words);
+
+			refreshList(list);
+		});
+	});
+
+	$('#password-form').submit(function (e) {
+		e.preventDefault();
+
+		$('#password-lists .password-list').each(function () {
+			refreshList($(this));
+		});
 	});
 });

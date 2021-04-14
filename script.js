@@ -6,7 +6,7 @@ function getRandomInt(min, max)
 	var maxRange = 65536;
 	var numbers = new Uint16Array(1);
 
-	(window.crypto || window.msCrypto).getRandomValues(numbers);
+	window.crypto.getRandomValues(numbers);
 
 	if (numbers[0] >= Math.floor(maxRange / range) * range) {
 		return getRandomInt(min, max);
@@ -31,18 +31,18 @@ function testGetRandomInt()
 
 function refreshList(list)
 {
-	var length = $('#password-length').val();
-	var count = $('#password-count').val();
-	var numbers = $('#password-numbers').is(':checked');
+	var length = document.getElementById('password-length').value;
+	var count = document.getElementById('password-count').value;
+	var numbers = document.getElementById('password-numbers').checked;
 	var symbols = [];
 
-	if ($('#password-symbols').is(':checked')) {
+	if (document.getElementById('password-symbols').checked) {
 		symbols = ['!', '@', '#', '$', '%', '^', '&', '*'];
 	}
 
-	var words = list.data('words');
+	var words = wordLists[list.dataset.path];
 
-	list.empty();
+	list.innerHTML = '';
 
 	for (c = 0; c < count; c++) {
 		var i = getRandomInt(0, words.length - 1);
@@ -64,34 +64,36 @@ function refreshList(list)
 			password += separator + word.charAt(0).toUpperCase() + word.slice(1);
 		}
 
-		list.append($('<li class="list-group-item">').html(password));
+		list.innerHTML += '<li class="list-group-item">' + password + '</li>';
 	}
 }
 
-$(document).ready(function () {
-	$('#password-lists .password-list').each(function () {
-		var list = $(this);
+var wordLists = [];
 
-		$.get($(this).data('path'), function(data) {
+document.addEventListener('DOMContentLoaded', function (event) {
+	document.querySelectorAll('#password-lists .password-list').forEach(function (list) {
+		fetch(list.dataset.path).then(function(response) {
+			return response.text();
+		}).then(function (text) {
 			var words = [];
 
-			data.trim().split("\n").forEach(function (line)  {
+			text.trim().split("\n").forEach(function (line)  {
 				var parts = line.split("\t");
 
 				words.push(parts[1]);
 			});
 
-			list.data('words', words);
+			wordLists[list.dataset.path] = words;
 
 			refreshList(list);
 		});
 	});
 
-	$('#password-form').submit(function (e) {
+	document.getElementById('password-form').onsubmit = function (e) {
 		e.preventDefault();
 
-		$('#password-lists .password-list').each(function () {
-			refreshList($(this));
+		document.querySelectorAll('#password-lists .password-list').forEach(function (list) {
+			refreshList(list);
 		});
-	});
+	};
 });

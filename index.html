@@ -7,9 +7,7 @@
 		<link rel="preload" href="/files/eff_large_wordlist.txt" as="fetch" crossorigin="anonymous">
 		<link rel="preload" href="/files/eff_short_wordlist_1.txt" as="fetch" crossorigin="anonymous">
 		<link rel="preload" href="/files/eff_short_wordlist_2_0.txt" as="fetch" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.6.0/dist/flatly/bootstrap.min.css" integrity="sha256-+anKrX3Z/K1L31IR1Dlpi7C+/IA6MDj4TNBUsiwTP3A=" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.6.0/dist/darkly/bootstrap.min.css" integrity="sha256-CETRC0luEnm32Z1z91BT8xqiKfIzbspZ64YCq3T63xk=" crossorigin="anonymous" media="(prefers-color-scheme: dark)">
-		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.0.2/dist/css/bootstrap-dark.min.css" integrity="sha256-7Vkdu5Oh+M9yKmZQWZwyPD/HtZiJ6hOXPIwKvTcWpo8=" crossorigin="anonymous">
 		<title>Password Generator</title>
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,35 +15,45 @@
 		<link rel="manifest" href="/site.webmanifest">
 	</head>
 	<body>
-		<nav class="navbar navbar-dark bg-primary mb-3">
+		<nav class="navbar navbar-dark bg-dark mb-3">
 			<div class="container">
 				<a class="navbar-brand" href="/">Password Generator</a>
 			</div>
 		</nav>
 		<div class="container">
-			<form id="password-form" class="form-inline">
-				<label class="mr-1 mb-3" for="password-length">Length</label>
-				<input type="number" class="form-control mr-3 mb-3" id="password-length" value="3" min="2">
-				<label class="mr-1 mb-3" for="password-count">Count</label>
-				<input type="number" class="form-control mr-3 mb-3" id="password-count" value="10" min="5">
-				<div class="form-check mr-3 mb-3">
-					<input class="form-check-input" type="checkbox" checked="checked" id="password-numbers">
-					<label class="form-check-label" for="password-numbers">Include numbers</label>
+			<form id="password-form" class="row gx-3 gy-3 mb-3 align-items-center">
+				<label class="col-auto col-form-label" for="password-length">Length</label>
+				<div class="col-lg-1 col-md-2 col-sm-3 col-4">
+					<input type="number" class="form-control" id="password-length" value="3" min="2">
 				</div>
-				<div class="form-check mr-3 mb-3">
-					<input class="form-check-input" type="checkbox" id="password-symbols">
-					<label class="form-check-label" for="password-symbols">Include symbols</label>
+				<label class="col-auto col-form-label" for="password-count">Count</label>
+				<div class="col-lg-1 col-md-2 col-sm-3 col-4">
+					<input type="number" class="form-control" id="password-count" value="10" min="5">
 				</div>
-				<button type="submit" id="password-refresh" class="btn btn-primary mb-3">Refresh</button>
+				<div class="col-auto">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" checked="checked" id="password-numbers">
+						<label class="form-check-label" for="password-numbers">Include numbers</label>
+					</div>
+				</div>
+				<div class="col-auto">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="password-symbols">
+						<label class="form-check-label" for="password-symbols">Include symbols</label>
+					</div>
+				</div>
+				<div class="col-auto">
+					<button type="submit" id="password-refresh" class="btn btn-dark">Refresh</button>
+				</div>
 			</form>
 
-			<div id="password-lists" class="row">
-				<div class="col-sm mb-3">
-					<div class="card border-primary">
-						<div class="card-header bg-primary text-white">
+			<div id="password-lists" class="row gx-3 gy-3 mb-3">
+				<div class="col-sm">
+					<div class="card border-dark">
+						<div class="card-header bg-dark text-white">
 							Long Wordlist
 						</div>
-						<ul class="list-group list-group-flush password-list" data-path="/files/eff_large_wordlist.txt">
+						<ul class="list-group list-group-flush password-list font-monospace" data-path="/files/eff_large_wordlist.txt">
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>
@@ -59,12 +67,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm mb-3">
-					<div class="card border-primary">
-						<div class="card-header bg-primary text-white">
+				<div class="col-sm">
+					<div class="card border-dark">
+						<div class="card-header bg-dark text-white">
 							Short Wordlist #1
 						</div>
-						<ul class="list-group list-group-flush password-list" data-path="/files/eff_short_wordlist_1.txt">
+						<ul class="list-group list-group-flush password-list font-monospace" data-path="/files/eff_short_wordlist_1.txt">
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>
@@ -78,12 +86,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-sm mb-3">
-					<div class="card border-primary">
-						<div class="card-header bg-primary text-white">
+				<div class="col-sm">
+					<div class="card border-dark">
+						<div class="card-header bg-dark text-white">
 							Short Wordlist #2
 						</div>
-						<ul class="list-group list-group-flush password-list" data-path="/files/eff_short_wordlist_2_0.txt">
+						<ul class="list-group list-group-flush password-list font-monospace" data-path="/files/eff_short_wordlist_2_0.txt">
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>
 							<li class="list-group-item">&nbsp;</li>

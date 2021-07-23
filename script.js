@@ -64,7 +64,7 @@ function refreshList(list)
 			password += separator + word.charAt(0).toUpperCase() + word.slice(1);
 		}
 
-		list.innerHTML += '<li class="list-group-item">' + password + '</li>';
+		list.innerHTML += '<li class="list-group-item" title="' + password.length + ' characters">' + password + '</li>';
 	}
 }
 

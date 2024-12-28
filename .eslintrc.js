@@ -21,6 +21,7 @@ module.exports = {
         // https://yeonjuan.github.io/html-eslint/docs/all-rules
         'max-len': 0,
         '@html-eslint/indent': ['error', 2],
+        '@html-eslint/attrs-newline': 'off',
         '@html-eslint/no-abstract-roles': 'error',
         '@html-eslint/no-accesskey-attrs': 'error',
         '@html-eslint/no-aria-hidden-body': 'error',
